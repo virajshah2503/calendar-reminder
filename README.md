@@ -1,5 +1,3 @@
-steps
-
-1. start mongodb (dbname=localmongodb)
-2. path=<Directory>/calendar-reminder/server node app.js
-3. path=<Directory>/calendar-reminder npm start
+start mongodb (dbname=localmongodb)
+path=<./calendar-reminder/server> node app.js
+path=<./calendar-reminder> npm start

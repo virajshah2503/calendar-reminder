@@ -1,0 +1,168 @@
+.calendar-header{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar-header > div{
+  width: 32.67%;
+  font-size: 30px;
+}
+
+.calendar-prevmonth{
+  text-align: left;
+  color : #f00
+}
+
+.calendar-currentmonth{
+  text-align: center;
+  color : #08f;
+}
+
+.calendar-nextmonth{
+  text-align: right;
+  color : #f00
+}
+
+.weeks{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.weekday-header{
+  width: 14%;
+  text-align: center;
+  margin-top: 15px;
+  padding: 20px;
+  border : 1px solid #ddd;
+  border-left :none;
+  font-weight: 600
+}
+
+.weekday-header:first-child{
+  border-left: 1px solid #ddd;
+}
+
+.days{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.month-body {
+  position: relative;
+  width: 14%;
+  padding: 10px;
+  min-height: 148px;
+  border : 1px solid #ddd;
+  text-align: left;
+  border-top: none;
+  border-left: none;
+}
+
+.rowfirst{
+  border-left: 1px solid #ddd;
+}
+
+.today{
+  border : 1px solid #08f;
+}
+
+.addReminder{
+  position: absolute;
+  bottom: 0px;
+  right : 5px;
+  opacity: 0;
+  -webkit-transition: opacity .5s;
+  -o-transition: opacity .5s;
+  transition: opacity .5s;
+  z-index: 1;
+  font-size: 30px;
+  color : red;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.monthview:hover .addReminder{
+  opacity: 1;
+}
+
+.unusedview{
+  background-color: #dddddd47;
+}
+
+.add{
+  background-color : #08f !important;
+  border : 1px solid #08f !important;
+  color : white !important;
+}
+
+.cancel{
+  margin-left: 10px;
+  color: red !important;
+}
+
+.reminder-details{
+  color: #fff;
+  position: relative;
+  font-size: 12px;
+  padding: 3px 5px;
+  margin-bottom: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reminder-actions{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 3px;
+  visibility: hidden;
+}
+
+.reminder-details:hover .reminder-actions{
+  visibility: visible;
+}
+
+.reminder-actions button{
+  background: none;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  float: right
+}
+
+.reminder-note,.reminder-time{
+  display: block;
+  white-space: nowrap;
+  width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hourselect,.minuteselect,.ampmselect{
+  width: 45px;
+  margin: 0 auto;
+  background: #eee;
+  border: 1px solid #eee;
+  padding: 2px;
+  outline: 0;
+  font-size: 12px;
+}
+
+.rc-color-picker-trigger {
+    border: 1px solid #999;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 0 2px #fff inset;
+    box-shadow: inset 0 0 0 2px #fff;
+}

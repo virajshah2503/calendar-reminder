@@ -26,7 +26,7 @@ app.use('/',(req,res,next) => {
 
 app.use('/reminders', route_reminder);
 
-var port = 30001;
+const port = 30001;
 
 app.listen(port, () => {
     console.log('Server is up and running on port number ' + port);

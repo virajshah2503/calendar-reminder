@@ -92,6 +92,7 @@ exports.reminder_fetch = function(req,res){
     Reminder.find({
         datetime: {"$gte": startDateTime, "$lt": endDateTime}
     })
+    .sort({ datetime : 1 })
     .select('id note color datetime')
     .exec((err,reminders) => {
         res.json(

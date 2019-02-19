@@ -31,6 +31,8 @@ class Calendar extends Component {
     this.fetchReminders = this.fetchReminders.bind(this);
     this.toggleform = this.toggleform.bind(this);
     this.deleteReminder = this.deleteReminder.bind(this);
+    this.onDragStart = this.onDragStart.bind(this);
+    this.onDrop = this.onDrop.bind(this);
   }
 
   gotoPrevMonth(){
@@ -108,6 +110,29 @@ class Calendar extends Component {
     });
   }
 
+  onDragStart(event,id){
+    event.dataTransfer.setData("id", id);
+  }
+
+  onDragOver(event){
+    event.preventDefault();
+  }
+
+  onDrop(event, day){
+     let id = event.dataTransfer.getData("id");
+
+     let reminder = this.state.reminders.filter((reminder) => reminder._id === id);
+
+     reminder = reminder[0];
+
+     reminder.datetime = Moment(reminder.datetime).set("date",day);
+
+     Axios.put('http://localhost:30001/reminders/edit/'+id,{
+        note : reminder.note,
+        datetime : reminder.datetime.format("YYYY-MM-DD HH:mm:ss")
+      }).then((response) => this.fetchReminders());
+  }
+
   render() {
 
     let current = this.state.current;
@@ -165,10 +190,10 @@ class Calendar extends Component {
 
       daysBody.push(
         <div className={ "monthview " + className+ ( usedWidth === 112 || usedWidth === 210 || usedWidth === 308 || usedWidth === 406 || usedWidth === 504 ? " rowfirst" : "")}
-             key={i}
+             key={i} onDragOver={(event) => this.onDragOver(event)} onDrop={(event) => this.onDrop(event,i)}
         >
           <div className="dayvalue">{i}</div>
-          {filteredreminders.map((reminder,index) => { return (<Reminder key={index} reminder={reminder} editreminder={this.showreminderForm} deletereminder={this.deleteReminder}/>)})}
+          {filteredreminders.map((reminder,index) => { return (<Reminder key={index} reminder={reminder} editreminder={this.showreminderForm} deletereminder={this.deleteReminder} ondragstart={this.onDragStart} />)})}
           {
             this.state.toggleform && this.state.clickedday === i
             ? <Reminderform day={datestring} fetchreminders={this.fetchReminders} filteredreminder={filteredreminder} toggleform={this.toggleform}></Reminderform>
